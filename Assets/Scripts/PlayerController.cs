@@ -6,14 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float gravity;
+    public GameObject groundChecker;
+    public LayerMask layerMask;
+    public float groundDistance;
+    public Material coloringMaterial;
+
     private Rigidbody rigidbody;
     private Transform camera;
     private bool isGrounded;
     private Vector3 moveDirection;
-    public GameObject groundChecker;
-    public LayerMask layerMask;
-    public float groundDistance;
     private float velociryY;
+
 
     Vector3 startPosition;
 
@@ -52,5 +55,8 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Death") transform.position = startPosition;
+        if (other.tag == "Yarn") other.gameObject.GetComponent<MeshRenderer>().material = coloringMaterial;
+
+        print(other.name);
     }
 }
