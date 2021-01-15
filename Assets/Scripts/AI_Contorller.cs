@@ -7,6 +7,7 @@ public class AI_Contorller : MonoBehaviour
 {
 
     public GameObject target;
+    public Material coloringMaterial;
     private NavMeshAgent navMeshAgent;
 
 
@@ -25,4 +26,11 @@ public class AI_Contorller : MonoBehaviour
     {
        // navMeshAgent.velocity = Vector3.forward * 5;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Yarn") other.gameObject.GetComponent<MeshRenderer>().material = coloringMaterial;
+
+    }
+
 }
